@@ -1,0 +1,92 @@
+@mixin border {border:solid 1px red}
+@import "color";
+section#titlechart {
+    background: $blue-color;
+	text-align: center;
+	position: relative;
+	min-height: 400px;
+	min-width: 100%;
+    padding-top:120px;
+}
+section#titlechart h1.title {
+  width:243px;
+  height:56px;
+  margin: 0 auto;
+  background:transparent url(../images/title.svg) center no-repeat;
+}
+section#titlechart #description {
+	position: relative;
+	width:70%;
+    min-width:240px;
+	margin: 0px auto 0 auto;
+    z-index:10;
+}
+section#titlechart #description ol {
+  padding-left:30px;
+  font-size:1.2em;
+  line-height: 1.3em;
+  text-align: left;
+  max-width: 240px;
+  margin: 10px auto 10px auto;
+  white-space: normal;
+}
+section#titlechart #description ol {
+	list-style-position: outside;
+}
+#example-wrapper section#titlechart #description:after {
+	content: "↧";
+	font-size: 40px;
+}
+
+
+
+
+#start .chart {
+ position:absolute;
+ color:#666;
+ font-size:16px;
+ margin:0 -110px;
+ max-width:220px;
+ left:50%;
+ top:-30px;
+
+}
+
+.title-chart {
+    width:80%;
+    padding:0 1em;
+    margin: 0 20px;
+    border-left:  #fff solid 2px;
+    z-index: 0;
+    color:rgba(255,255,255,0.8);
+}
+
+.title-chart .title {
+   margin-top:0;
+   font-weight: 100;
+   font-family: Oswald;
+   color:#fff;
+   text-shadow:2px 2px 2px rgba(0,0,0,0.5);
+}
+.title-chart > ul {
+  font-size: 2em;
+}
+
+#coder .title-chart {
+  @extend .title-chart;
+  text-align:right;
+  border-left: none !important;
+  border-right:  #fff solid 2px;
+}
+#contact .title {
+  width: 80%;
+  max-width: 300px;
+  margin: -37px auto;
+  color: #fff;
+  font-size: 1.5em;
+  padding: 0px 10px;
+
+}
+#contact .title h1 {
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+}

@@ -1,0 +1,65 @@
+/*第一场景,脱衣服*/
+/*身体尺寸*/
+/*全裸*/
+@mixin size{
+   height: 259px;
+   width: 120px;
+   min-width: 120px;
+}
+
+#body {
+  @include size;
+//  left:50%;
+//  margin-left:-60px;
+  background: transparent url(../images/Qnude.svg) no-repeat center;
+  position: relative;
+  margin: 0 auto;
+  z-index: 1; }
+
+@mixin position{
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+/*git t恤*/
+.git-shirt {
+  @include size;
+  @include position;
+  background: transparent url('../images/gitshirt.svg') no-repeat center;
+  z-index: 3;
+}
+
+/*内裤*/
+.git-short {
+  @include size;
+  @include position;
+  background: transparent url('../images/gitshort.svg') no-repeat center;
+  z-index: 2; }
+
+/*dirbbble 篮球服*/
+.basket-uniform {
+  @include size;
+  @include position;
+  background: transparent url('../images/basketuniform.svg') no-repeat center;
+  z-index: 3;
+}
+
+.basket-short {
+  @include size;
+  @include position;
+  background: transparent url('../images/basketshort.svg') no-repeat center;
+  z-index: 2; }
+
+.pm-shirt {
+  @include size;
+  @include position;
+  background: transparent url('../images/pmshirt.svg') no-repeat center;
+  z-index: 3; }
+
+.pm-short {
+  @include size;
+  @include position;
+  background: transparent url('../images/pmshort.svg') no-repeat center;
+  z-index: 2; }
+
+/*# sourceMappingURL=cloth.css.map */
