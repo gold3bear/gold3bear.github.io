@@ -1,0 +1,30 @@
+div#dialog {
+  font-size: 18px;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  margin-left: -120px;
+  border-radius: 8px;
+  width: 240px;
+  z-index: 100;
+  background: #ffffff;
+  padding: 10px 10px 10px;
+  font-family: 'Lato', sans-serif;
+  box-shadow: 2px 2px 4px rgba(60, 60, 60, 0.2); }
+
+div#dialog a {
+  text-decoration-line: underline; }
+
+div#dialog:after {
+  border: solid;
+  border-color: transparent #fff;
+  /*上下边框透明,左右两边*/
+  border-width: 0px 0px 20px 20px;
+  content: "";
+  right: 60px;
+  bottom: -16px;
+  display: block;
+  position: absolute;
+  z-index: 21; }
+
+/*# sourceMappingURL=dailog.css.map */

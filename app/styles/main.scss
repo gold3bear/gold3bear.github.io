@@ -1,0 +1,212 @@
+@import "color";
+
+@import "dailog";
+
+@import "titlechart";
+/*身体 和 *衣服*/
+@import "cloth";
+/* 道具 */
+@import "props";
+
+/* 页面 page-loader*/
+@import "page-loader";
+
+@import "footer";
+
+/*normalize css*/
+@import "normalize";
+
+/* General styles */
+body {
+  font-family: 'Roboto 2', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: $black-color;
+  font-size: 13px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+body, html {
+  height: 100%
+}
+h1{
+  font-size:2.5em;
+}
+strong {
+  font-size:1.3em;
+  font-weight: 800;
+}
+small {
+  font-size:0.7em;
+  font-weight: 100;
+}
+h2 {
+  font-size: 2em;
+}
+a, a:visited {
+  text-decoration: none;
+  color: #2e639e;
+}
+a:hover {
+  text-decoration: underline;
+}
+.touchonly {
+  display: none;
+}
+html.touch .touchonly {
+  display: block;
+}
+.noselect * {
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+}
+.doselect * {
+  user-select: auto;
+  -webkit-user-select: auto;
+  -khtml-user-select: auto;
+  -moz-user-select: auto;
+  -o-user-select: auto;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.hidden{
+  display: none;
+}
+.clearfix {
+  display: inline-block;
+}
+
+html[xmlns] .clearfix {
+  display: block;
+}
+
+* html .clearfix {
+  height: 1%;
+}
+
+.hide {
+  display:none;
+}
+/*文章排版*/
+/*字体预设*/
+#cloud {
+  width:100%;
+  position:absolute;
+  left:0;
+  bottom:-1px;
+}
+
+/*工具*/
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+/*
+	Containers
+*/
+#content-wrapper, #example-wrapper {
+	height: 100%;
+}
+.scrollContainer {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	width: 100%
+}
+.scrollContainer {
+	height: 100%;
+	margin: auto;
+}
+#example-wrapper .scrollContent {
+	height: 100%;
+}
+
+#example-wrapper.scrollContainer .scrollContent {
+	width: 100%;
+	height: auto;
+}
+
+#example-wrapper .scrollContent {
+	font-size: 14px;
+}
+
+section.start * {
+	font-size: 13px;
+}
+
+section#start {
+  background:#fff;
+  position: relative;
+}
+/*分场景背景色*/
+section#designer {
+  background: $orange-color;
+}
+section#coder {
+  background: #3da3a2;
+}
+section#pm {
+  background: $yellow-color;
+}
+section#contact {
+  background: $yellow-color;
+}
+ul {
+  list-style-type:none;
+  padding-left:0;
+}
+
+/*
+	Elements
+*/
+.spacer {
+  text-align: center;
+  min-height: 100px;
+}
+.spacer.s0 {
+  min-height: 1px;
+}
+.spacer.s1 {
+  min-height: 100px;
+}
+.spacer.s2 {
+  min-height: 200px;
+}
+.spacer.s3 {
+  min-height: 300px;
+}
+.spacer.s4 {
+  min-height: 400px;
+}
+.spacer.s5 {
+  min-height: 500px;
+}
+.spacer.s6 {
+  min-height: 600px;
+}
+.spacer.s7 {
+  min-height: 700px;
+}
+.spacer.s8 {
+  min-height: 800px;
+}
+.spacer.s9 {
+  min-height: 900px;
+}
+.spacer.s10 {
+  min-height: 1000px;
+}
+.spacer.s_viewport {
+  min-height: 100%;
+}

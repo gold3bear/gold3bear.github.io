@@ -1,0 +1,56 @@
+/*道具*/
+.props {
+  width:100%;
+}
+.props ul{
+  width:98%
+}
+
+.props ul>li {
+  float:right;
+  width:33%;
+  height:100px;
+}
+
+.degree {
+  background-size: contain;
+  background: transparent url('../images/cap.svg') center no-repeat;
+}
+.degree:hover {
+
+}
+.awards {
+  background-size: contain;
+  background: transparent url('../images/cup.svg') center no-repeat;
+}
+
+.badge {
+  background-size: contain;
+  background: transparent url('../images/badge.svg') center no-repeat;
+}
+
+.github {
+  background-size: contain;
+  background: transparent url('../images/github.svg') center no-repeat;
+}
+.wechatdeveloper {
+  background-size: contain;
+  background: transparent url('../images/wechatdeveloper.svg') center no-repeat;
+}
+.xcode {
+  background-size: contain;
+  background: transparent url('../images/xcode.svg') center no-repeat;
+}
+.book {
+  background-size: contain;
+  background: transparent url('../images/book.svg') center no-repeat;
+}
+
+.cube {
+  background-size: contain;
+  background: transparent url('../images/cube.svg') center no-repeat;
+}
+.team {
+  background-size: contain;
+  background: transparent url('../images/people.svg') center no-repeat;
+}
