@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LoomLoom 商店创建器 · create-your-loom-store</title>
+  <meta name="description" content="把你做熟了的那套方法，做成一个 Agent 装上就能跑的 Skill。它 7×24 待在别人的工作流里干活，别人每跑一次，你收一次钱。不用写代码，全程只和 Agent 对话，MIT 开源免费。">
+  <meta property="og:title" content="LoomLoom 商店创建器 · create-your-loom-store">
+  <meta property="og:description" content="用你的 Skill，为你赚钱。别人每跑一次，你收一次钱。不用写代码，全程和 Agent 对话，MIT 开源免费。">
+  <meta name="theme-color" content="#0a0908">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="#top">LoomLoom 商店创建器<span>.</span></a>
+    <nav class="nav-links">
+      <a href="#facts">怎么赚钱</a>
+      <a href="#roadmap">流程</a>
+      <a href="#boundary">分工</a>
+      <a href="#gates">确认门</a>
+      <a href="#case">真实案例</a>
+      <a href="#quickstart">立即开始</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="button" href="https://github.com/gold3bear/create-your-loom-store/releases/latest/download/create-your-loom-store-v0.2.0.zip" download>下载 ZIP</a>
+      <a class="button button-primary" href="#quickstart"><span class="long">零代码</span>开工</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">create-your-loom-store · LoomLoom × Agent Skill</p>
+        <h1>用你的 Skill，<em>为你赚钱</em>。</h1>
+        <p class="lede">
+          把你做熟了的那套方法，做成一个 Agent 装上就能跑的 Skill。它 7×24 待在别人的工作流里干活，
+          <b>别人每跑一次，你收一次钱。</b>
+        </p>
+        <p class="lede lede-sub">
+          你不用会写代码。产品设计、测试打磨、正式上架，再配一页能打动人的营销传播页面——
+          全程只和 Agent 对话。适配 WorkBuddy、OpenClaw、Codex、Claude Code。
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#quickstart">立即开工</a>
+          <a class="button" href="#case">看<span class="long">已上架的</span>案例</a>
+          <a class="button" href="LoomLoom-WorkBuddy-Field-Guide.pdf">下载<span class="long">实战指南 </span>PDF</a>
+        </div>
+        <p class="hero-badge">MIT 开源免费 · 复制一段话给 Agent 就能装</p>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <canvas id="hero-canvas"></canvas>
+        <!-- Static fallback for browsers without WebGL; hero3d.js hides it on success. -->
+        <div id="hero-fallback">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#b8323f" stroke-width="1.4">
+            <path d="M40 60 L40 240 M360 60 L360 240 M40 60 L360 60 M40 240 L360 240" stroke-width="2"/>
+            <path d="M80 60 L80 240 M120 60 L120 240 M160 60 L160 240 M200 60 L200 240 M240 60 L240 240 M280 60 L280 240 M320 60 L320 240" stroke-width=".6" opacity=".5"/>
+            <path d="M60 90 Q 100 78 140 90 T 220 90 T 300 90 T 340 90" stroke-width="1.2"/>
+            <path d="M60 130 Q 100 142 140 130 T 220 130 T 300 130 T 340 130" stroke-width="1.2"/>
+            <path d="M60 170 Q 100 158 140 170 T 220 170 T 300 170 T 340 170" stroke-width="1.2"/>
+            <path d="M240 200 L240 216 L268 216 L268 232 L300 232" stroke="#e8b06a" stroke-width="1.4"/>
+            <path d="M270 200 L270 210 L296 210 L296 226 L330 226" stroke="#e8b06a" stroke-width="1.4"/>
+            <path d="M300 200 L300 214 L322 214" stroke="#e8b06a" stroke-width="1.4"/>
+            <circle cx="300" cy="232" r="3.2" fill="#e8b06a" stroke="none"/>
+            <circle cx="330" cy="226" r="3.2" fill="#e8b06a" stroke="none"/>
+            <circle cx="322" cy="214" r="3.2" fill="#e8b06a" stroke="none"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="facts" class="section">
+      <div class="wrap">
+        <div class="facts" data-reveal>
+          <div class="fact">
+            <p class="fact-k">钱从哪来</p>
+            <h3>上架之后，按次收钱</h3>
+            <p>上架到 LoomLoom Market，每次任务收多少由你定。别人用一次，你收一次——不用谈单，不用交付，不用答疑。它上班，你收钱。</p>
+          </div>
+          <div class="fact">
+            <p class="fact-k">谁适合用</p>
+            <h3>手里有一套管用的方法</h3>
+            <p>选股初筛、简历初筛、合同体检、竞品盘点、稿件评级、选品评估——凡是你反复在做、别人也要做、而且做得比大多数人好的判断，都能变成商品。</p>
+          </div>
+          <div class="fact">
+            <p class="fact-k">要花多少</p>
+            <h3>本体免费，云端才计费</h3>
+            <p>这个 Skill 本身 MIT 开源，随便拿去用。只有真正跑云端任务才按量计费，而且每一次都先给你报价、等你确认才动手。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section section-alt">
+      <div class="wrap">
+        <div class="section-title" data-reveal>
+          <p class="eyebrow">WORKFLOW</p>
+          <h2>从一句话，到一个能为你收钱的 Skill</h2>
+          <p>你只负责把方法说清楚，剩下八步交给 Agent。走完全程，你手上会有三样东西：一个能装的 Skill、一个 GitHub Release、一页能直接发出去的营销页。</p>
+        </div>
+        <div class="strip" aria-hidden="true"><canvas data-scene="pipeline"></canvas></div>
+        <div class="roadmap" data-reveal>
+          <div class="roadmap-col">
+            <p class="phase">DESIGN · 定义想法</p>
+            <div class="roadmap-step"><b>01</b><div class="step-name">一句话讲明白痛点</div><div class="step-body">Agent 只问业务问题，不问你听不懂的技术术语</div></div>
+            <div class="roadmap-step"><b>02</b><div class="step-name">Agent 编译成方案</div><div class="step-body">你确认方案后，才会真正动手搭建</div></div>
+          </div>
+          <div class="roadmap-col">
+            <p class="phase">BUILD · 搭建产品</p>
+            <div class="roadmap-step"><b>03</b><div class="step-name">Agent 帮你搭好</div><div class="step-body">从私有模板到本地测试，方法论一步步跑通</div></div>
+            <div class="roadmap-step"><b>04</b><div class="step-name">打包成可安装 Skill</div><div class="step-body">别人一装就能用，你的方法论变成了产品</div></div>
+          </div>
+          <div class="roadmap-col">
+            <p class="phase">TEST · 跑数据验证</p>
+            <div class="roadmap-step"><b>05</b><div class="step-name">真实数据校验</div><div class="step-body">拒绝编造的证据，结论经得起复查</div></div>
+            <div class="roadmap-step"><b>06</b><div class="step-name">上线前全流程自检</div><div class="step-body">打包、发布、确认门，全部跑一遍才可信</div></div>
+          </div>
+          <div class="roadmap-col">
+            <p class="phase">PUBLISH · 上架赚钱</p>
+            <div class="roadmap-step"><b>07</b><div class="step-name">定价上架 Market</div><div class="step-body">发布到 GitHub Release，正式开始接单赚钱</div></div>
+            <div class="roadmap-step"><b>08</b><div class="step-name">自动生成营销传播页</div><div class="step-body">响应式落地页，把产品讲清楚、推出去</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="boundary" class="section section-dark">
+      <div class="wrap">
+        <div class="section-title" data-reveal>
+          <p class="eyebrow">分工</p>
+          <h2>你出主意，脏活累活交给他们</h2>
+        </div>
+        <div class="strip" aria-hidden="true"><canvas data-scene="relay"></canvas></div>
+        <div class="boundary-grid" data-reveal>
+          <div class="boundary-card">
+            <div class="role-icon" aria-hidden="true">
+              <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M11 24a5.5 5.5 0 0 1-1-10.9A7 7 0 0 1 23.5 11a5.5 5.5 0 0 1 1.5 10.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M11 24h14" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <p class="tag">LoomLoom 云端</p>
+            <h3>批量把活干完</h3>
+            <p>方案编译、模板创建、报价执行、上架销售，跑批这种体力活全在云端并行完成，不占用你的时间。</p>
+          </div>
+          <div class="boundary-card">
+            <div class="role-icon" aria-hidden="true">
+              <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M5 18 L14 18 L17 12 L20 24 L23 15 L25 18 L31 18" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="18" cy="18" r="14" stroke-width="1.2" opacity=".5"/>
+              </svg>
+            </div>
+            <p class="tag">这个 Agent Skill</p>
+            <h3>把产品盯到底</h3>
+            <p>从记录你的想法，到打包成可安装 Skill、推上 GitHub、配好营销页面，一路盯到能卖钱为止。</p>
+          </div>
+          <div class="boundary-card">
+            <div class="role-icon" aria-hidden="true">
+              <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M18 6a8 8 0 0 0-4.5 14.6c.9.65 1.5 1.5 1.5 2.4v1h6v-1c0-.9.6-1.75 1.5-2.4A8 8 0 0 0 18 6Z" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15 27.5h6M16 30.5h4" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <p class="tag">你</p>
+            <h3>只做四件事</h3>
+            <p>说清楚想解决的问题、挑一个方案、给点素材，剩下每次真金白银的操作，说一句“确认”就行。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gates" class="section">
+      <div class="wrap">
+        <div class="section-title" data-reveal>
+          <p class="eyebrow">确认门</p>
+          <h2>每一分钱，都得你点头。</h2>
+          <p>怕 Agent 背着你烧钱？这里有四道硬闸。哪怕你已经说了“开始吧”，每一道也会把要花的钱单独摆出来，等你那一句“确认”。</p>
+        </div>
+        <div class="strip strip-tall" aria-hidden="true"><canvas data-scene="gates"></canvas></div>
+        <div class="gates" data-reveal>
+          <div class="gate-item"><span class="mark">1</span><p>要正式创建产品模板了 —— 先给你看方案，你点头才建。</p></div>
+          <div class="gate-item"><span class="mark">2</span><p>要跑一次真花钱的云端任务了 —— 任务量、费用、余额先摆出来。</p></div>
+          <div class="gate-item"><span class="mark">3</span><p>要上架、改价或换版本了 —— 每一次变动都单独问你一遍。</p></div>
+          <div class="gate-item"><span class="mark">4</span><p>要正式对外发布了 —— GitHub Release 和营销页面上线前的最后一道门。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="case" class="section section-alt">
+      <div class="wrap">
+        <div class="section-title" data-reveal>
+          <p class="eyebrow">真实案例</p>
+          <h2>百里挑一选好股：从一句话，到一个已上架的商品</h2>
+          <p>一个段永平式价值投资初筛工具。批量投进几十上百只美股，云端四维并行审查，本地校验器把站不住的结论一条条拒掉——最后留下的，才值得你花时间深研。</p>
+        </div>
+        <div class="strip strip-tall" aria-hidden="true"><canvas data-scene="screen"></canvas></div>
+        <div class="case" data-reveal>
+          <figure class="case-poster">
+            <img src="assets/case-poster.jpg" alt="美股价值初筛 Skill 的主视觉海报：100 只股票经云端并行审查与本地证据硬校验后，只留下 1 只进入深度研究" loading="lazy" width="680" height="1433">
+            <figcaption>该 Skill 已上线的主视觉</figcaption>
+          </figure>
+          <div class="case-body">
+            <p>
+              你只给一串股票代码。本地 Agent 把它们整理成三份可追溯的数据包——身份与来源、
+              财务与估值、商业质量与风险——交给公开 SkillBot 并行审查，再由本地校验器逐条核对：
+              来源路径解析不了、原值对不上、期间过期的，一律拒绝，不参与排名。
+              从一句话的想法到能被别人安装付费使用的产品，全程没写一行代码。
+            </p>
+            <ul>
+              <li>六维加权：商业模式、护城河、财务质量各 20%，估值、资本配置各 15%，能力圈 10%</li>
+              <li>九条强制否决，任一触发即不得进入深度研究</li>
+              <li>结果分四档交付：deep_research / watchlist / pass / rejected</li>
+              <li>已作为公开 SkillBot 上架 Market，按任务固定计费</li>
+              <li>已发布 GitHub Release、可安装 Skill 与营销传播页面</li>
+              <li>适配 Workbuddy、Codex、Claude Code、OpenClaw</li>
+            </ul>
+            <div class="case-links">
+              <a href="https://gold3bear.github.io/loomloom-us-value-screening-skill/">看它的营销传播页面 <span>&#8599;</span></a>
+              <a href="https://github.com/gold3bear/loomloom-us-value-screening-skill">GitHub 源码与 Release <span>&#8599;</span></a>
+              <a href="LoomLoom-WorkBuddy-Field-Guide.pdf">完整实战指南 PDF <span>&#8599;</span></a>
+            </div>
+            <p class="case-note">该案例仅用于研究辅助，不构成投资建议，不提供目标价、仓位或买卖指令。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quickstart" class="section">
+      <div class="wrap">
+        <div class="section-title" data-reveal>
+          <p class="eyebrow">立即开始</p>
+          <h2>把这段话复制给 Agent，今天就开工</h2>
+          <p>这段话可以原样粘贴——中间的方括号不填也没关系，Agent 会自己问你。它会先检测本地是否已装 <code>loomloom</code>，没装就说明云端阶段暂时用不了，先帮你把本地草稿写出来。花钱的确认门也已经写进这段话里了。</p>
+        </div>
+        <div class="code-block" id="quickstart-code" data-reveal>请先安装 GitHub 仓库中的 create-your-loom-store Skill：
+https://github.com/gold3bear/create-your-loom-store
+保留完整的 SKILL.md、agents、references、scripts、assets 目录，装好后告诉我
+安装路径和校验结果。
+
+再检查本地有没有 loomloom Skill 和 CLI。没有就直说云端阶段暂时用不了，
+先带我把本地草稿做出来，不要自行安装。
+
+然后用 create-your-loom-store 帮我把这件事做成一个能上架赚钱的 SkillBot：
+
+【把你反复在做、别人也需要的那个判断，用一句话写在这里。例如：
+  批量筛出值得深入研究的美股 / 批量初筛技术岗简历 /
+  批量体检采购合同里的风险条款。】
+
+请用对话把需求问清楚，别让我填表，一次只问一个真正缺的信息。
+需求清楚之后，完成设计、测试、打包成本地 Agent Skill、GitHub Release
+和营销传播页面的全流程，默认使用 cloud-opt-in 模式。
+
+任何要花钱的步骤——建模板、跑云端任务、上架 Market、改价、发 Release、
+发布 Pages——都先把任务数和费用摆给我看，等我在对话里明确说"确认"才执行。
+报价和预检不等于我同意执行。
+
+全部做完后汇总给我：Skill 安装路径、Template 与 Listing ID、Release 地址、
+营销页地址、本地校验结果，以及还有哪些步骤在等我确认。</div>
+      </div>
+    </section>
+
+    <section class="final">
+      <div class="final-bg" aria-hidden="true"><canvas data-scene="converge"></canvas></div>
+      <div class="wrap">
+      <p class="eyebrow">别等了</p>
+      <h2>今天就让它开始为你赚钱。</h2>
+      <p class="lede">MIT 开源，复制一段话给 Agent 就能装。一段对话之后，你就有了一个能为你收钱的 Skill。</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="https://github.com/gold3bear/create-your-loom-store/releases/latest/download/create-your-loom-store-v0.2.0.zip" download>下载 ZIP · MIT 开源</a>
+        <a class="button" href="#quickstart">复制安装指令</a>
+      </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <span>© 2026 LoomLoom 商店创建器 · create-your-loom-store</span>
+    <nav>
+      <a href="https://github.com/gold3bear/create-your-loom-store">GitHub 源码</a>
+      <a href="LoomLoom-WorkBuddy-Field-Guide.pdf">实战指南 PDF</a>
+      <span>MIT License</span>
+    </nav>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="hero3d.js"></script>
+  <script src="sections.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

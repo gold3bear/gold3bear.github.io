@@ -1,0 +1,609 @@
+:root{
+  --bg:#0a0908;
+  --bg-2:#100d0c;
+  --panel:rgba(255,255,255,.035);
+  --panel-2:rgba(255,255,255,.055);
+  --ink:#f2ece2;
+  --ink-soft:#a1968a;
+  --ink-dim:#6f665d;
+  --maroon:#b8323f;
+  --maroon-deep:#8e2233;
+  --ember:#e8b06a;
+  --line:rgba(255,255,255,.09);
+  --line-strong:rgba(255,255,255,.16);
+  --radius:14px;
+  --wrap:1120px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:"Noto Serif SC","PingFang SC","Songti SC",Georgia,serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+/* ambient glow behind the page, keeps the dark field from reading as flat black */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(900px 520px at 72% 8%, rgba(184,50,63,.16), transparent 62%),
+    radial-gradient(700px 480px at 12% 42%, rgba(232,176,106,.07), transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+body > *{position:relative;z-index:1;}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;}
+a{color:inherit;text-decoration:none;}
+code{font-family:"SFMono-Regular",Consolas,monospace;font-size:.92em;color:var(--ember);}
+.eyebrow{
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--ember);
+  font-weight:600;
+  margin:0 0 12px;
+}
+h1,h2,h3{font-weight:600;margin:0;letter-spacing:-.01em;}
+h1{font-size:clamp(30px,5.2vw,50px);line-height:1.2;}
+h2{font-size:clamp(23px,3.4vw,32px);line-height:1.3;}
+h3{font-size:18px;}
+p{margin:0;}
+.button{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 22px;
+  border-radius:999px;
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:14px;
+  font-weight:600;
+  border:1px solid var(--line-strong);
+  color:var(--ink);
+  background:transparent;
+  transition:border-color .18s ease,background .18s ease,transform .18s ease;
+  white-space:nowrap;
+}
+.button:hover{border-color:var(--ember);background:rgba(255,255,255,.05);transform:translateY(-1px);}
+.button-primary{
+  background:var(--maroon);
+  border-color:var(--maroon);
+  color:#fff;
+  box-shadow:0 0 0 0 rgba(184,50,63,.5);
+}
+.button-primary:hover{
+  background:var(--maroon-deep);
+  border-color:var(--maroon);
+  box-shadow:0 6px 28px -6px rgba(184,50,63,.75);
+}
+
+/* ---- nav ---- */
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:16px 24px;
+  position:sticky;
+  top:0;
+  background:rgba(10,9,8,.72);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  z-index:20;
+}
+.brand{
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-weight:600;
+  font-size:15px;
+  letter-spacing:.02em;
+}
+.brand span{color:var(--maroon);}
+.nav-links{
+  display:flex;
+  gap:24px;
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:13px;
+  color:var(--ink-soft);
+}
+.nav-links a{transition:color .18s ease;}
+.nav-links a:hover{color:var(--ember);}
+.nav-cta{display:flex;gap:10px;align-items:center;}
+.nav-cta .button{padding:9px 18px;font-size:13px;}
+
+/* ---- hero ---- */
+.hero{
+  padding:84px 0 72px;
+  display:grid;
+  grid-template-columns:1.02fr .98fr;
+  gap:48px;
+  align-items:center;
+  text-align:left;
+}
+.hero h1 em{
+  font-style:normal;
+  color:var(--ember);
+}
+.hero .lede{
+  max-width:560px;
+  margin-top:20px;
+  color:var(--ink-soft);
+  font-size:17px;
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:32px;
+}
+.hero .lede b{
+  color:var(--ink);
+  font-weight:600;
+}
+.lede-sub{
+  max-width:560px;
+  margin-top:14px;
+  color:var(--ink-soft);
+  font-size:15px;
+}
+.hero-badge{
+  margin-top:18px;
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:12.5px;
+  letter-spacing:.02em;
+  color:var(--ember);
+}
+.hero-visual{
+  position:relative;
+  aspect-ratio:1/1;
+  min-height:320px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+/* the WebGL canvas stays hidden until hero3d.js confirms WebGL support */
+#hero-canvas{display:none;width:100%;height:100%;}
+#hero-fallback{width:100%;height:100%;opacity:.7;}
+#hero-fallback svg{width:100%;height:100%;}
+/* Swap-in point: to use a static generated image instead of the 3D scene,
+   replace the hero-visual contents with an img tag, class hero-visual-img,
+   pointing at assets/hero.png — see docs/image-prompts.md. */
+.hero-visual-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:16px;
+}
+
+/* ---- sections ---- */
+.section{padding:78px 0;position:relative;}
+.section-title{max-width:660px;margin-bottom:42px;}
+.section-title p{color:var(--ink-soft);margin-top:14px;}
+.section-alt{
+  background:var(--bg-2);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.section-dark{
+  background:linear-gradient(180deg,rgba(184,50,63,.07),transparent 70%),var(--bg);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+/* ---- section canvases (sections.js) ---- */
+.strip{
+  position:relative;
+  height:132px;
+  margin:0 0 30px;
+}
+.strip-tall{height:150px;}
+.strip canvas{width:100%;height:100%;display:block;}
+
+.final{position:relative;overflow:hidden;}
+.final-bg{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.6;
+}
+.final-bg canvas{width:100%;height:100%;display:block;}
+.final .wrap{position:relative;z-index:1;}
+
+/* ---- facts: the three objections a buyer has before scrolling ---- */
+.facts{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.fact{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-top:2px solid var(--maroon);
+  border-radius:0 0 var(--radius) var(--radius);
+  padding:26px 24px;
+  transition:border-color .24s ease;
+}
+.fact:hover{border-color:var(--line-strong);border-top-color:var(--ember);}
+.fact-k{
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.18em;
+  color:var(--ember);
+  margin-bottom:10px;
+}
+.fact h3{margin-bottom:10px;}
+.fact p{color:var(--ink-soft);font-size:14px;}
+
+/* ---- roadmap ---- */
+.roadmap{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.roadmap-col{
+  background:var(--bg);
+  padding:26px 22px;
+  transition:background .24s ease;
+}
+.roadmap-col:hover{background:var(--panel-2);}
+.roadmap-col .phase{
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--ember);
+  font-weight:700;
+  margin-bottom:18px;
+}
+.roadmap-step{padding:14px 0;border-top:1px solid var(--line);}
+.roadmap-step:first-of-type{border-top:none;padding-top:0;}
+.roadmap-step b{
+  display:block;
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.1em;
+  color:var(--maroon);
+}
+.roadmap-step .step-name{font-size:15px;font-weight:600;margin-top:4px;}
+.roadmap-step .step-body{font-size:13px;color:var(--ink-soft);margin-top:4px;line-height:1.6;}
+
+/* ---- boundary ---- */
+.boundary-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.boundary-card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:26px;
+  transition:border-color .24s ease,transform .24s ease;
+}
+.boundary-card:hover{border-color:var(--line-strong);transform:translateY(-3px);}
+.boundary-card p{color:var(--ink-soft);font-size:14px;}
+.boundary-card .tag{
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--ember);
+  margin-bottom:8px;
+}
+.role-icon{
+  width:38px;
+  height:38px;
+  margin-bottom:18px;
+  color:var(--maroon);
+  filter:drop-shadow(0 0 10px rgba(184,50,63,.45));
+}
+.role-icon svg{width:100%;height:100%;display:block;}
+
+/* ---- gates ---- */
+.gates{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.gate-item{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:18px 20px;
+  transition:border-color .24s ease;
+}
+.gate-item:hover{border-color:var(--line-strong);}
+.gate-item .mark{
+  flex:0 0 auto;
+  width:28px;height:28px;
+  border-radius:50%;
+  background:transparent;
+  border:1px solid var(--maroon);
+  color:var(--ember);
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:13px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;
+}
+.gate-item p{font-size:14px;color:var(--ink-soft);}
+
+/* ---- case study ---- */
+.case{
+  display:grid;
+  grid-template-columns:.72fr 1.28fr;
+  gap:38px;
+  align-items:start;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:38px;
+}
+.case-body > p{color:var(--ink-soft);}
+.case ul{margin:18px 0 0;padding-left:18px;color:var(--ink-soft);font-size:14px;}
+.case li{margin-bottom:8px;}
+.case li::marker{color:var(--maroon);}
+
+/* The real poster from the shipped case-study product. It is that product's
+   own blue palette, deliberately left alone — framing it as an artifact is
+   the proof that something actually launched. */
+.case-poster{
+  margin:0;
+  position:sticky;
+  top:88px;
+}
+.case-poster img{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:12px;
+  border:1px solid var(--line);
+}
+.case-poster figcaption{
+  margin-top:10px;
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.06em;
+  color:var(--ink-dim);
+  text-align:center;
+}
+.case-links{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:22px;
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:13px;
+}
+.case-links a{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:14px 16px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:rgba(255,255,255,.02);
+  transition:border-color .2s ease,background .2s ease;
+}
+.case-links a span{color:var(--ember);}
+.case-links a:hover{border-color:var(--ember);background:rgba(232,176,106,.06);}
+.case-note{
+  margin-top:22px;
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:12px;
+  color:var(--ink-dim);
+  border-top:1px solid var(--line);
+  padding-top:16px;
+}
+
+/* ---- quickstart ---- */
+.code-block{
+  background:#070605;
+  color:#cfc6b8;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:24px 26px;
+  font-family:"SFMono-Regular",Consolas,monospace;
+  font-size:13px;
+  line-height:1.7;
+  white-space:pre-wrap;
+  word-break:break-word;
+  position:relative;
+}
+.copy-btn{
+  position:absolute;
+  top:14px;
+  right:14px;
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:12px;
+  padding:7px 14px;
+  border-radius:999px;
+  border:1px solid var(--line-strong);
+  background:rgba(255,255,255,.05);
+  color:var(--ink);
+  cursor:pointer;
+  transition:border-color .2s ease;
+}
+.copy-btn:hover{border-color:var(--ember);}
+
+/* ---- final ---- */
+.final{
+  text-align:center;
+  padding:96px 0 112px;
+}
+.final h2{max-width:660px;margin:0 auto;}
+.final .lede{max-width:540px;margin:18px auto 32px;color:var(--ink-soft);}
+.final .hero-actions{justify-content:center;}
+
+/* ---- footer ---- */
+.footer{
+  border-top:1px solid var(--line);
+  padding:32px 24px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  justify-content:space-between;
+  align-items:center;
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:13px;
+  color:var(--ink-dim);
+}
+.footer nav{display:flex;gap:20px;}
+.footer a:hover{color:var(--ember);}
+
+/* ---- scroll reveal ---- */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.is-visible{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none;}
+  .button:hover{transform:none;}
+  .boundary-card:hover{transform:none;}
+}
+
+/* ---- responsive ----------------------------------------------------------
+   Breakpoints are placed where a specific piece of layout actually breaks,
+   not at device names. Reading order down the file: widest first for the
+   min-width rule, then narrowing.
+--------------------------------------------------------------------------- */
+
+/* Large desktops. A 1120px cap leaves a 27" display mostly empty margin. */
+@media (min-width:1600px){
+  :root{--wrap:1280px;}
+  h1{font-size:clamp(46px,3.5vw,58px);}
+  h2{font-size:clamp(30px,2.2vw,36px);}
+  .hero{padding:104px 0 88px;gap:64px;}
+  .hero .lede{font-size:18px;max-width:620px;}
+  .lede-sub{max-width:620px;}
+  .section{padding:96px 0;}
+  .final{padding:112px 0 130px;}
+}
+
+/* Laptops: four roadmap columns drop below a readable measure. */
+@media (max-width:1120px){
+  .roadmap{grid-template-columns:1fr 1fr;}
+}
+
+/* Small laptops and landscape tablets: the two-column hero starts to crowd,
+   so it stacks here — well before phone width. Once stacked, the decorative
+   canvas must not lead; order the copy so the CTA stays above the fold. */
+@media (max-width:1000px){
+  .hero{grid-template-columns:1fr;gap:28px;padding:48px 0 60px;}
+  .hero-copy{display:flex;flex-direction:column;}
+  .hero-copy > .eyebrow{order:1;}
+  .hero-copy > h1{order:2;}
+  .hero-copy > .lede{order:3;}
+  .hero-copy > .hero-actions{order:4;}
+  .hero-copy > .hero-badge{order:5;}
+  .hero-copy > .lede-sub{order:6;}
+  .hero .lede,.lede-sub{max-width:none;}
+  .hero-visual{aspect-ratio:16/9;min-height:0;max-height:400px;}
+}
+
+/* Portrait tablets. */
+@media (max-width:900px){
+  .section{padding:64px 0;}
+  .section-title{margin-bottom:34px;}
+  .case{grid-template-columns:1fr;padding:26px;}
+  .case-poster{position:static;max-width:360px;margin:0 auto;}
+  .hero-visual{max-height:340px;}
+}
+
+/* Three-across cards fall under a comfortable measure around here, and two
+   columns would strand a third card on its own row. Go straight to one. */
+@media (max-width:760px){
+  .facts{grid-template-columns:1fr;}
+  .boundary-grid{grid-template-columns:1fr;}
+  .gates{grid-template-columns:1fr;}
+  .roadmap{grid-template-columns:1fr;}
+}
+
+/* Phones. */
+@media (max-width:640px){
+  .wrap{padding:0 20px;}
+  .nav{padding:12px 16px;}
+  .nav-links{display:none;}
+  .brand{font-size:13.5px;}
+  .nav-cta{gap:8px;}
+  .nav-cta .button{padding:8px 14px;font-size:12.5px;}
+  .section{padding:52px 0;}
+  .section-title{margin-bottom:28px;}
+
+  .hero{padding:28px 0 44px;gap:22px;}
+  h1{font-size:clamp(27px,7.6vw,34px);}
+  .hero .lede{font-size:15px;margin-top:14px;}
+  .lede-sub{font-size:13.5px;margin-top:16px;}
+  .hero-badge{margin-top:14px;font-size:12px;}
+  .hero-visual{aspect-ratio:4/3;max-height:none;}
+
+  /* Three full-width stacked buttons ate ~180px of the fold. Primary spans
+     the row; the two secondaries share the next one at reduced weight. */
+  .hero-actions{flex-direction:row;flex-wrap:wrap;gap:10px;margin-top:22px;}
+  .hero-actions .button{padding:12px;font-size:13px;justify-content:center;}
+  .hero-actions .button-primary{flex:1 1 100%;}
+  .hero-actions .button:not(.button-primary){flex:1 1 calc(50% - 5px);}
+  .final .hero-actions .button{flex:1 1 100%;}
+
+  .strip{height:96px;margin-bottom:22px;}
+  .strip-tall{height:110px;}
+  .roadmap-col{padding:20px 18px;}
+  .boundary-card,.fact{padding:20px 18px;}
+  .gate-item{padding:15px 16px;}
+  .case{padding:20px;}
+  .case-poster{max-width:100%;}
+  .code-block{padding:18px 16px;font-size:12px;}
+  .copy-btn{top:10px;right:10px;padding:6px 11px;font-size:11px;}
+  .final{padding:64px 0 76px;}
+  .footer{flex-direction:column;align-items:flex-start;padding:26px 20px;}
+  .footer nav{flex-wrap:wrap;gap:14px;}
+}
+
+/* Small phones: drop the optional halves of button labels. */
+@media (max-width:400px){
+  .button span.long{display:none;}
+}
+
+/* iPhone SE (1st gen) and similar 320px screens. Two buttons no longer fit
+   side by side once the labels are shortened, so let them stack. */
+@media (max-width:360px){
+  .wrap{padding:0 16px;}
+  h1{font-size:25px;}
+  .hero .lede{font-size:14.5px;}
+  .brand{font-size:12.5px;}
+  .nav{padding:10px 12px;}
+  .nav-cta{gap:6px;}
+  .nav-cta .button{padding:7px 11px;font-size:12px;}
+  .hero-actions .button:not(.button-primary){flex:1 1 100%;}
+  .code-block{font-size:11.5px;padding:16px 14px;}
+}
+
+/* Phone held sideways: roughly 350px of height, most of it already spent on
+   browser chrome. Drop the decoration entirely and shrink the vertical
+   rhythm so the headline and CTA still share one screen. */
+@media (max-height:520px) and (orientation:landscape){
+  .nav{padding:8px 16px;}
+  .hero{padding:18px 0 28px;gap:16px;grid-template-columns:1fr;}
+  .hero-visual{display:none;}
+  h1{font-size:clamp(24px,3.4vw,30px);}
+  .hero .lede{font-size:14px;margin-top:10px;}
+  .lede-sub{display:none;}
+  .hero-actions{margin-top:16px;}
+  .hero-badge{margin-top:10px;}
+  .section{padding:44px 0;}
+  .strip{height:84px;}
+  .final{padding:52px 0 60px;}
+}
+
+/* Respect users who ask for less motion: the section canvases already render
+   a single frame, so drop the reveal transitions too. */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+}
